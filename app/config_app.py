@@ -5,9 +5,13 @@ from textual.reactive import reactive
 from textual.message import Message
 from textual.screen import Screen, ModalScreen
 from textual.widget import Widget
+from textual.validation import ValidationResult
 from textual import on
 from textual import events
 import systemctl_python
+
+class validate(ValidationResult):
+    def 
 
 class ParamWidget(Widget):
     def __init__(self, paramname, paramvalue, currentval):
@@ -18,7 +22,7 @@ class ParamWidget(Widget):
     def compose(self) -> ComposeResult:
         """Create child widgets for the app."""
         yield Static(self.paramname, classes="paramname")
-        yield Input(placeholder=self.paramvalue, classes="paramentry", value=self.currentval)
+        yield Input(placeholder=self.paramvalue, classes="paramentry", value=self.currentval, validate_on="blur", validators=[validate(self.paramname)])
         yield Button("Help!", classes="paramhelp", id=self.paramname + "_helpbutton")
 
 class MainScreen(Screen):
@@ -67,6 +71,7 @@ class App(App):
             self.push_screen(HelpScreen(paramname, defaultparams[paramname], "idk", required[paramname], helper[paramname]))
         if "close_help_screen" in event.button.id: 
             self.pop_screen()
+
 
 ### initially need to open the default config files
 defaultparams = {}
