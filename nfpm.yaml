@@ -348,11 +348,11 @@ contents:
 umask: 0o002
 
 # Scripts to run at specific stages. (overridable)
-# scripts:
-#   preinstall: ./scripts/preinstall.sh
-#   postinstall: ./scripts/postinstall.sh
-#   preremove: ./scripts/preremove.sh
-#   postremove: ./scripts/postremove.sh
+scripts:
+  # preinstall: ./scripts/preinstall.sh
+  postinstall: ./scripts/postinstall.sh
+  # preremove: ./scripts/preremove.sh
+  # postremove: ./scripts/postremove.sh
 
 # All fields above marked as `overridable` can be overridden for a given
 # package format in this section.
